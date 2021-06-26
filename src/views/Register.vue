@@ -1,4 +1,5 @@
 <template>
+  <h1>todos</h1>
   <div>
     <form @submit.prevent="registerAction">
       <div class="u_info">
@@ -67,7 +68,7 @@ export default {
 
   methods: {
     updateName() {
-      this.isValidName = this.form.name.length > 3;
+      this.isValidName = this.form.name.length >= 2;
       this.isValid =
         this.isValidName &&
         this.isValidId &&
@@ -77,7 +78,7 @@ export default {
       console.log(this.isValidName);
     },
     updateId() {
-      this.isValidId = this.form.id.length > 6;
+      this.isValidId = this.form.id.length > 3;
       this.isValid =
         this.isValidName &&
         this.isValidId &&
@@ -117,6 +118,17 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+  width: 100%;
+  font-size: 100px;
+  font-weight: 100;
+  text-align: center;
+  color: rgba(175, 47, 47, 0.15);
+  -webkit-text-rendering: optimizeLegibility;
+  -moz-text-rendering: optimizeLegibility;
+  text-rendering: optimizeLegibility;
+}
+
 span {
   display: inline-block;
   width: 100px;
@@ -128,15 +140,22 @@ span {
 
 .gender {
   display: inline-block;
+  width: 80px;
 }
 
 .register_btn {
   border: 1px solid gray;
-  padding: 8px;
+  padding: 12px 20px;
   background-color: pink;
+  border: none;
+  border-radius: 5px;
 }
 
 .register_btn:disabled {
   background-color: #ddd;
+}
+
+form {
+  text-align: center;
 }
 </style>

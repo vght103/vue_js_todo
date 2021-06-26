@@ -1,14 +1,33 @@
 <template>
-  <div>
+  <div class="container">
+    <h1>todos</h1>
     <form @submit.prevent="loginAction">
-      <div>
-        <input type="email" v-model="form.email" @keyup="updateEmail" />
+      <div class="row">
+        <div class="col-xs-12 col-md-6 mb-2">
+          <input
+            type="email"
+            class="form-control"
+            v-model="form.email"
+            @keyup="updateEmail"
+            placeholder="email"
+          />
+        </div>
+        <div class="col-xs-12 col-md-6 pr-2">
+          <input
+            type="password"
+            class="form-control"
+            v-model="form.password"
+            @keyup="updatePw"
+            placeholder="Passwordd"
+          />
+        </div>
       </div>
       <div>
-        <input type="password" v-model="form.password" @keyup="updatePw" />
-      </div>
-      <div>
-        <button class="login_btn" :disabled="!isValid" @click="loginAction">
+        <button
+          class="btn btn-primary"
+          :disabled="!isValid"
+          @click="loginAction"
+        >
           Login
         </button>
       </div>
@@ -54,11 +73,36 @@ export default {
 </script>
 
 <style scoped>
-.login_btn {
+/* .login_btn {
   background: orange;
-  padding: 10px;
+  padding: 12px 20px;
+  border-radius: 5px;
 }
 .login_btn:disabled {
   background: #ddd;
 }
+
+h1 {
+  width: 100%;
+  font-size: 100px;
+  font-weight: 100;
+  text-align: center;
+  color: rgba(175, 47, 47, 0.15);
+  -webkit-text-rendering: optimizeLegibility;
+  -moz-text-rendering: optimizeLegibility;
+  text-rendering: optimizeLegibility;
+}
+
+input {
+  width: 180px;
+  height: 20px;
+}
+
+form {
+  text-align: center;
+}
+
+div {
+  margin: 20px 0; */
+/* } */
 </style>

@@ -13,11 +13,9 @@
 
 <script>
 export default {
-  name: "header",
-
   data() {
     return {
-      newTodoInput: null,
+      newTodoInput: "",
     };
   },
 
@@ -25,12 +23,15 @@ export default {
     createTodo() {
       if (this.newTodoInput) {
         this.$emit("createTodo", this.newTodoInput);
-
-        this.newTodoInput = null;
+        this.newTodoInput = "";
       }
     },
   },
 };
 </script>
 
-<style></style>
+<style>
+h1 {
+  /* margin-bottom: 50px; */
+}
+</style>

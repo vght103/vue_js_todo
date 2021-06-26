@@ -4,7 +4,8 @@
     <router-link to="/about">About</router-link> |
     <router-link to="/Login">LOGIN</router-link> |
     <router-link to="/Register">Register</router-link> |
-    <router-link to="/Todo">Todo</router-link>
+    <router-link to="/Todo">Todo</router-link> |
+    <router-link to="/Suggetion">Suggestion</router-link>
   </div>
 
   <router-view />
@@ -27,11 +28,13 @@ export default {
 
 #nav {
   padding: 30px;
+  text-align: center;
 }
 
 #nav a {
   font-weight: bold;
   color: #2c3e50;
+  margin: 0 8px;
 }
 
 #nav a.router-link-exact-active {

@@ -3,8 +3,14 @@ import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import Todo from "../views/Todo.vue";
+import Suggetion from "../views/Suggetion.vue";
 
 const routes = [
+  {
+    path: "/suggetion",
+    name: "Suggetion",
+    component: Suggetion,
+  },
   {
     path: "/todo",
     name: "Todo",
