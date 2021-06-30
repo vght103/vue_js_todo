@@ -1,6 +1,6 @@
 <template>
   <footer class="footer" v-show="isShow">
-    <span class="todo-count">{{ activeTodosCount }} left items</span>
+    <span class="todo-count">{{ activeTodoCount }} left items</span>
 
     <ul class="filters">
       <li>
@@ -20,7 +20,7 @@
         >
       </li>
     </ul>
-    <button @click="clearCompleted" class="clear-completed">
+    <button class="clear-completed" @click="clearCompleted">
       Clear completed
     </button>
   </footer>
@@ -29,25 +29,26 @@
 <script>
 export default {
   props: {
-    todoItems: {
+    todosItems: {
       type: Array,
       required: true,
     },
+
     isShow: {
       type: Boolean,
       default: false,
     },
   },
+
   computed: {
-    activeTodosCount() {
-      // [{id: '',}, {}]
-      var activeTodos = this.todoItems.filter((todo) => {
-        return !todo.completed;
+    activeTodoCount() {
+      var activeTodos = this.todosItems.filter((todo) => {
+        return todo.completed == false;
       });
       return activeTodos.length;
-      //return this.todoItems.filter(todo => !todo.completed).length;
     },
   },
+
   methods: {
     updateStatus(status) {
       this.$emit("updateStatus", status);
@@ -55,8 +56,7 @@ export default {
     },
 
     clearCompleted() {
-      this.$emit("clearComplete");
-      console.log(this.$emit("clearComplete"));
+      this.$emit("clearCompleted");
     },
   },
 };

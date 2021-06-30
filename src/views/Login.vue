@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
-    <h1>todos</h1>
+  <div>
+    <h1 class="row justify-content-center">todos</h1>
     <form @submit.prevent="loginAction">
       <div class="row">
-        <div class="col-xs-12 col-md-6 mb-2">
+        <div class="col-12 col-md-6 mb-2">
           <input
             type="email"
             class="form-control"
@@ -12,7 +12,7 @@
             placeholder="email"
           />
         </div>
-        <div class="col-xs-12 col-md-6 pr-2">
+        <div class="col-xs-12 col-md-6 pr-2 mb-2">
           <input
             type="password"
             class="form-control"
@@ -23,20 +23,26 @@
         </div>
       </div>
       <div>
-        <button
-          class="btn btn-primary"
-          :disabled="!isValid"
-          @click="loginAction"
-        >
-          Login
-        </button>
+        <div class="row justify-content-center">
+          <button
+            class="btn btn-primary col-xs-12 col-md-10"
+            :disabled="!isValid"
+            @click="loginAction"
+          >
+            Login
+          </button>
+        </div>
       </div>
+      <div><div></div></div>
     </form>
   </div>
+
   <!-- 회원가입 이름 / 암호 / 이메일 / 성별 -->
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -62,17 +68,56 @@ export default {
       const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(String(email).toLowerCase());
     },
-    loginAction() {
+
+    async loginAction() {
       //1.서버랑 통신
       //2.서버에서 성공이라고 하면 홈으로 이동
       //3. 아니면 에러메세지 보여줌!
-      this.$router.push("/");
+      try {
+        // var result = await new Promise((resolve, reject) => {
+        //   //success
+        //   resolve(1);
+
+        //   // reject(new Error("error"));
+        // });
+
+        // console.log("finished!");
+
+        var response = await axios({
+          url: "http://149.28.19.152:7500/login",
+          method: "POST",
+          data: {
+            email: this.form.email,
+            password: this.form.password,
+          },
+        });
+
+        if (response) {
+          console.log(response);
+          localStorage.setItem("token", response.data.token);
+          this.$router.push("/");
+        } else {
+          //error
+        }
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
 </script>
 
 <style scoped>
+button {
+}
+
+.box {
+  border: 1px solid gray;
+}
+
+.container > .row div {
+  border: 1px solid gray;
+}
 /* .login_btn {
   background: orange;
   padding: 12px 20px;
